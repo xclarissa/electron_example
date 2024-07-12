@@ -18,7 +18,7 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-zip",
-      executableName: "ElectronStarter",
+      executableName: "ElectronStarterAll",
       platforms: ["darwin", "linux", "win32"],
     },
     {
