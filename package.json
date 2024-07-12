@@ -52,7 +52,7 @@
     "forge": {
       "packagerConfig": {
         "name": "ElectronStarter",
-        "executableName": "electron-starter",
+        "executableName": "ElectronStarter",
         "icon": "assets/icon",
         "extraResource": [
           "assets"
