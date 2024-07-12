@@ -23,12 +23,12 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-deb",
-      executableName: "ElectronStarter",
+      executableName: "ElectronStarterLinux",
       config: {},
     },
     {
       name: "@electron-forge/maker-rpm",
-      executableName: "ElectronStarter",
+      executableName: "ElectronStarterLinuxRPM",
       config: {},
     },
   ],
