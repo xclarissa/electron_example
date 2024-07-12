@@ -17,10 +17,10 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hot-loader": "^4.13.0"
+    "react-hot-loader": "^4.13.0",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -51,8 +51,5 @@
   },
   "config": {
     "forge": "./tools/forge/forge.config.js"
-  },
-  "optionalDependencies": {
-    "@esbuild/linux-x64": "^0.23.0"
   }
 }

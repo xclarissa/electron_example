@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-ubuntu
-          path: out/ElectronStarter-linux-x64/**
+          path: out/ElectronStarter-build/ElectronStarter-linux-x64/**
 
   build-windows:
     runs-on: windows-latest
@@ -58,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts-windows
-          path: out/ElectronStarter-win32-x64/**
+          path: out/ElectronStarter-build/ElectronStarter-win32-x64/**
 
 
   release:
