@@ -51,7 +51,7 @@
     "description": "electron project example",
     "forge": {
       "packagerConfig": {
-        "name": "ElectronStarter",
+        "name": "electron-ts-react-example",
         "executableName": "ElectronStarter",
         "icon": "assets/icon",
         "extraResource": [
