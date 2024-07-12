@@ -1,6 +1,9 @@
 {
   "name": "electron-ts-react-example",
-  "author": "Clarissa Xavier",
+  "author": {
+    "name": "Clarissa Xavier",
+    "url": "https://github.com/xclarissa"
+  },
   "version": "1.0.0",
   "description": "Boilerplate using Electron + TypeScript + React",
   "main": ".webpack/main",
@@ -8,8 +11,7 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "make:linux": "electron-forge make --platform=linux",
-    "release": "electron-forge publish",
+    "publish": "electron-forge publish",
     "electron": "electron ."
   },
   "keywords": [],
@@ -47,65 +49,6 @@
     "webpack": "^5.70.0"
   },
   "config": {
-    "authors": "Clarissa",
-    "description": "electron project example",
-    "forge": {
-      "packagerConfig": {
-        "name": "ElectronStarter",
-        "executableName": "ElectronStarter",
-        "icon": "assets/icon",
-        "extraResource": [
-          "assets"
-        ],
-        "asar": true
-      },
-      "plugins": [
-        {
-          "name": "@electron-forge/plugin-webpack",
-          "config": {
-            "mainConfig": "./webpack/main.webpack.js",
-            "renderer": {
-              "config": "./webpack/renderer.webpack.js",
-              "entryPoints": [
-                {
-                  "html": "./public/index.html",
-                  "js": "./src/index.tsx",
-                  "name": "main_window",
-                  "preload": {
-                    "js": "./electron/bridge.ts"
-                  }
-                }
-              ]
-            }
-          }
-        }
-      ],
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "ElectronStarter"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin",
-            "linux",
-            "win32"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {
-            "name": "ElectronStarter"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+    "forge": "./tools/forge/forge.config.js"
   }
 }
