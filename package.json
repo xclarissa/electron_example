@@ -8,7 +8,7 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "make-linux": "electron-forge make --platform linux",
+    "make:linux": "electron-forge make --platform=linux",
     "release": "electron-forge publish",
     "electron": "electron ."
   },
@@ -57,10 +57,7 @@
         "extraResource": [
           "assets"
         ],
-        "asar": true,
-        "linux": {
-          "target": "deb"
-        }
+        "asar": true
       },
       "plugins": [
         {
@@ -101,8 +98,7 @@
         {
           "name": "@electron-forge/maker-deb",
           "config": {
-            "authors": "Clarissa",
-            "description": "some description"
+            "name": "ElectronStarter"
           }
         },
         {
