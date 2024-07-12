@@ -18,17 +18,15 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-zip",
-      executableName: "ElectronStarterAll",
+      executableName: "ElectronStarter",
       platforms: ["darwin", "linux", "win32"],
     },
     {
       name: "@electron-forge/maker-deb",
-      executableName: "ElectronStarterLinux",
       config: {},
     },
     {
       name: "@electron-forge/maker-rpm",
-      executableName: "ElectronStarterLinuxRPM",
       config: {},
     },
   ],
@@ -38,6 +36,15 @@ module.exports = {
       config: {
         mainConfig: path.join(rootDir, "./tools/webpack/main.webpack.js"),
         renderer: {
+          build: [
+          {
+            entry: path.join(rootDir, 'electron/main.ts'),
+            config: path.join(rootDir, 'tools/webpack/main.webpack.js'),
+          },
+          {
+            entry: path.join(rootDir, 'tools/webpack/renderer.webpack.js'),
+          },
+        ],
           config: path.join(rootDir, "./tools/webpack/renderer.webpack.js"),
           entryPoints: [
             {
@@ -53,4 +60,5 @@ module.exports = {
       },
     },
   ],
+  buildIdentifier: "ElectronStarter-build",
 };
