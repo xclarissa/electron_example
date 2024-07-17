@@ -38,14 +38,11 @@ jobs:
       - name: Zip build artifacts for Ubuntu
         run: zip -r ElectronStarter-linux-x64.zip out/ElectronStarter-build/ElectronStarter-linux-x64
 
-      - name: Debug Environment Variables
-        run: printenv | sort
-
       - name: Upload build artifacts for Ubuntu
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts-linux
-          path: out/ElectronStarter-build/ElectronStarter-linux-x64/**
+          path: ElectronStarter-linux-x64.zip
 
   build-windows:
     runs-on: windows-latest
@@ -78,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts-windows
-          path: out/ElectronStarter-build/ElectronStarter-win32-x64/**
+          path: ElectronStarter-win32-x64.zip
 
   release:
     needs: [build-ubuntu, build-windows]
@@ -114,7 +111,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_ACCESS_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release
+          asset_path: ./release/ElectronStarter-linux-x64.zip
           asset_name: ElectronStarter-linux-x64.zip
           asset_content_type: application/zip
 
@@ -124,7 +121,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_ACCESS_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release
+          asset_path: ./release/ElectronStarter-win32-x64.zip
           asset_name: ElectronStarter-win32-x64.zip
           asset_content_type: application/zip
 
