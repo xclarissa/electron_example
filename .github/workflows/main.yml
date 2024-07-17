@@ -38,10 +38,10 @@ jobs:
       - name: Debug Environment Variables
         run: printenv | sort
 
-      - name: Upload build artifacts
+      - name: Upload build artifacts for Ubuntu
         uses: actions/upload-artifact@v2
         with:
-          name: build-artifacts
+          name: build-artifacts-linux
           path: out/ElectronStarter-build/ElectronStarter-linux-x64/**
 
   build-windows:
@@ -68,10 +68,10 @@ jobs:
       - name: Build application
         run: yarn make
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload build artifacts for Windows
+        uses: actions/upload-artifact@v2
         with:
-          name: build-artifacts
+          name: build-artifacts-windows
           path: out/ElectronStarter-build/ElectronStarter-win32-x64/**
 
   release:
@@ -79,11 +79,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download build artifacts
+      - name: Download build artifacts for Linux
         uses: actions/download-artifact@v2
         with:
-          name: build-artifacts
-          path: ./release
+          name: build-artifacts-linux
+          path: ./release/linux
+
+      - name: Download build artifacts for Windows
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts-windows
+          path: ./release/windows
 
       - name: Create GitHub Release
         id: create_release
@@ -91,8 +97,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MY_ACCESS_TOKEN }}
         with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
+          tag_name: v1.0.1
+          release_name: Release v1.0.1
           draft: false
           prerelease: false
+
+      - name: Upload Linux executables
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_ACCESS_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/linux/ElectronStarter-linux-x64/**
+          asset_name: ElectronStarter-linux-x64.zip
+          asset_content_type: application/zip
+
+      - name: Upload Windows executables
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_ACCESS_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/windows/ElectronStarter-win32-x64/**
+          asset_name: ElectronStarter-win32-x64.zip
+          asset_content_type: application/zip
 
