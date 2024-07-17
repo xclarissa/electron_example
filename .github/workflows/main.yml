@@ -41,7 +41,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: build-artifacts-ubuntu
+          name: build-artifacts
           path: out/ElectronStarter-build/ElectronStarter-linux-x64/**
 
   build-windows:
@@ -71,7 +71,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifacts-windows
+          name: build-artifacts
           path: out/ElectronStarter-build/ElectronStarter-win32-x64/**
 
   release:
