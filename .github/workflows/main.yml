@@ -35,6 +35,9 @@ jobs:
       - name: Build application
         run: yarn make
 
+      - name: Zip build artifacts for Ubuntu
+        run: zip -r ElectronStarter-linux-x64.zip out/ElectronStarter-build/ElectronStarter-linux-x64
+
       - name: Debug Environment Variables
         run: printenv | sort
 
@@ -67,6 +70,9 @@ jobs:
 
       - name: Build application
         run: yarn make
+      
+      - name: Zip build artifacts for Windows
+        run: powershell Compress-Archive -Path out/ElectronStarter-build/ElectronStarter-win32-x64 -DestinationPath ElectronStarter-win32-x64.zip
 
       - name: Upload build artifacts for Windows
         uses: actions/upload-artifact@v2
@@ -83,13 +89,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-artifacts-linux
-          path: ./release/**
+          path: ./release
 
       - name: Download build artifacts for Windows
         uses: actions/download-artifact@v2
         with:
           name: build-artifacts-windows
-          path: ./release/**
+          path: ./release
 
       - name: Create GitHub Release
         id: create_release
