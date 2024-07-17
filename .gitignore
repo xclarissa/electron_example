@@ -3,3 +3,8 @@ dist
 packages
 .webpack
 out
+
+# act
+act_Linux_x86_64.tar.gz
+README.md
+bin

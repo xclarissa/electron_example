@@ -4,7 +4,7 @@ const rootDir = process.cwd();
 module.exports = {
   packagerConfig: {
     name: "ElectronStarter",
-    executableName: "ElectronStarter",
+    executableName: "electron-ts-react-example",
     icon: path.resolve("assets/icon"),
     extraResource: ["assets"],
   },
@@ -12,23 +12,21 @@ module.exports = {
   makers: [
     {
       name: "@electron-forge/maker-squirrel",
-      config: {
-        name: "ElectronStarter",
-      },
+      config: {},
     },
     {
       name: "@electron-forge/maker-zip",
-      executableName: "ElectronStarter",
       platforms: ["darwin", "linux", "win32"],
     },
     {
       name: "@electron-forge/maker-deb",
       config: {},
-    },
-    {
-      name: "@electron-forge/maker-rpm",
-      config: {},
-    },
+    }
+    // ,
+    // {
+    //   name: "@electron-forge/maker-rpm",
+    //   config: {},
+    // },
   ],
   plugins: [
     {
